@@ -1,0 +1,48 @@
+Scene
+    BackgroundColour 0 0 0
+    RenderSize 200 40
+    ScaleResolution 4
+End
+
+Object Plane
+    Colour 1 1 1
+    Scale 10
+End
+
+Camera PinholeCamera 1
+    Translate 0 0 -1.5
+End
+
+Light AmbientLight
+    Colour 0.01 0.01 0.01
+End
+
+Light SpotLight
+    Location -9 -0 -0.1
+    Direction 1 0 0.01
+    Colour 3000 3000 3000
+    Angle 0.2
+End
+
+Material Glass
+    Colour 0.5 0.5 0.5
+    Specular 0.5 0.5 0.5 50
+    Opacity 0.1
+    Mirror 1 1 1
+    RefractiveIndex 1.5
+End
+
+#Object Cube
+#    Material Glass
+#    Scale 0.2
+#    Translate 0 0 0
+#    Rotate Z 20
+#End
+
+Object Plane
+    Colour 0 0 0
+    Mirror 1 1 1
+    Translate 0.4 0 0
+    Rotate Y 90
+    Rotate Z 20
+End

@@ -1,0 +1,40 @@
+Scene
+    backgroundColour 0.75 1.0 1.0
+    renderSize 1920 1080
+    scaleResolution 0.6
+    rayDepth 2
+    FSAA 1
+    renderNormals
+End
+
+Object Mesh ../scenes/blender-sphere.obj
+    Scale 1
+    Colour 1 1 1
+    Specular 0.5 0.5 0.5 10
+    Rotate X 180
+    #DisableBoundingBox
+End
+
+#Object Sphere
+#    Scale 1
+#    Colour 0 0 1
+#    Specular 0.5 0.5 0.5 10
+#End
+
+camera PinholeCamera 1
+    translate 0 0 -4
+end
+
+light PointLight
+    location 10 -10 0
+    colour 7 7 7
+end
+
+light PointLight
+    location 0 -10 -10
+    colour 7 7 7
+end
+
+light AmbientLight
+    colour 0.3 0.3 0.3
+end

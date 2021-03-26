@@ -1,0 +1,24 @@
+Scene
+    BackgroundColour 0 0 0
+    RenderSize 200 200
+End
+
+Object Plane
+    Colour 1 0 0
+    Scale 10
+End
+
+Camera PinholeCamera 1
+    Translate 0 0 -10
+End 
+
+Light AmbientLight 
+    Colour 0.2 0.2 0.2
+End
+
+Light SpotLight
+  Location 0 -1.5 -0.5
+  Direction 1 1 1
+  Colour 1 1 1
+  Angle 50
+End

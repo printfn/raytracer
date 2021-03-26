@@ -1,0 +1,26 @@
+Scene
+    backgroundColour 0.75 1.0 1.0
+    renderSize 1920 1080
+    scaleResolution 0.2
+    rayDepth 2
+    FSAA 1
+End
+
+Object Mesh ../scenes/obj-test.obj
+    Colour 1 0 0
+    DisableBoundingBox
+End
+
+camera PinholeCamera 1
+    translate 0 0 -10
+end
+
+light PointLight
+    location 10 -10 0
+    colour 7 7 7
+end
+
+light PointLight
+    location 0 -10 -10
+    colour 7 7 7
+end

@@ -1,0 +1,53 @@
+Scene
+BackgroundColour 0 0 0
+RenderSize 400 300
+RayDepth 2
+End
+
+Material Gold
+  Colour 1 0.88 0.25
+  Specular 1 1 1 50
+  Mirror 1 0.88 0.25
+End
+
+Material White
+  Colour 1 1 1
+  Specular 1 1 1 10
+END
+
+Object Cube
+  Scale 0.7
+  Colour 1 0 0
+  Translate 0 0 0
+End
+
+Object Sphere
+Colour 0 1 0
+Translate 2 -1.5 -0.5
+End
+
+Object Plane
+  Scale 10
+  Material White
+  Mirror 0.8 0.8 0.8
+  Rotate X 90
+  Rotate Z 0
+  Translate 0 1 0
+End
+
+
+Camera PinholeCamera 1
+  Scale 1
+  Rotate X -36
+  Rotate Y 45
+  Translate -8 -8 -2
+End
+
+Light PointLight
+Location 3 -3 0
+Colour 3 3 3
+End
+
+Light AmbientLight
+Colour 0.2 0.2 0.2
+End

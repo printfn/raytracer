@@ -1,0 +1,61 @@
+Scene
+  BackgroundColour 0 0 0
+  RenderSize 400 300
+  RayDepth 100
+End
+
+Material Gold
+  Colour 1 0.88 0.25
+  Specular 1 1 1 50
+  Mirror 1 0.88 0.25
+End
+
+Material White
+  Colour 1 1 1
+  Specular 1 1 1 10
+END
+
+Object Plane
+  Scale 10
+  Material White
+  Rotate X 90
+  Rotate Z 0
+  Translate 0 1 0
+End
+
+Camera PinholeCamera 1
+  Scale 1
+  Rotate X -36
+  Rotate Y 45
+  Translate -8 -8 -8
+End
+
+Light SpotLight
+  Location 6 -7 0
+  Direction -1 1 0
+  Colour 7 0 0
+  Angle 20
+End
+Light SpotLight 
+  Location 0 -7 6
+  Direction 0 1 -1
+  Colour 0 7 0
+  Angle 20
+End
+Light SpotLight
+  Location 0 -7 -6
+  Direction 0 1 1
+  Colour 0 0 7
+  Angle 20
+End
+
+Object Cube
+  Material White
+  Translate 0 1 0
+End
+
+
+Light AmbientLight
+  Colour .1 .1 .1
+End
+
