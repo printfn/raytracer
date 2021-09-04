@@ -10,7 +10,7 @@ const double epsilon = 1e-6; //!< Small number for checking when things are almo
 
 const double infinity = std::numeric_limits<double>::max(); //!< Very large number, bigger than any sensible distance
 
-const double pi = 3.141592653589793;
+const double tau = 6.283185307179586;
 
 /** 
  * \brief Convert degrees to radians.
@@ -23,7 +23,7 @@ const double pi = 3.141592653589793;
  * \return The angle measured in radians.
  */
 inline double deg2rad(double deg) {
-    return deg * pi / 180;
+    return deg * tau / 360;
 }
 
 /** 
@@ -37,7 +37,7 @@ inline double deg2rad(double deg) {
  * \return The angle measured in degrees.
  */
 inline double rad2deg(double rad) {
-    return rad * 180 / pi;
+    return rad * 360 / tau;
 }
 
 

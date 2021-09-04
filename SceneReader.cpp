@@ -216,7 +216,7 @@ Point randomPointInRadius(Point location, double radius) {
         return location;
     }
     // generate a uniform random point in a sphere
-    double theta = randomInRange(0, 2 * pi);
+    double theta = randomInRange(0, tau);
     double v = randomInRange(0, 1);
     double phi = acos((2*v)-1);
     double r = pow(randomInRange(0,1), 1/3);
