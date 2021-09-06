@@ -109,34 +109,9 @@ public:
      */
     Ray applyInverse(const Ray &ray) const;
 
-    /** \brief Apply a rotation about the X-axis.
-     *
-     * Rotate by some angle (in degrees) about the X-axis.
-     * Following the right-handed co-ordinate convention, this is a 
-     * rotation from the positive Y-axis towards the positive Z-axis.
-     *
-     * \param rx The rotation in degrees.
-     */
+    /// angles in radians
     void rotateX(double rx);
-
-    /** \brief Apply a rotation about the Y-axis.
-     *
-     * Rotate by some angle (in degrees) about the Y-axis.
-     * Following the right-handed co-ordinate convention, this is a 
-     * rotation from the positive Z-axis towards the positive X-axis.
-     *
-     * \param ry The rotation in degrees.
-     */
     void rotateY(double ry);
-
-    /** \brief Apply a rotation about the Z-axis.
-     *
-     * Rotate by some angle (in degrees) about the Z-axis.
-     * Following the right-handed co-ordinate convention, this is a 
-     * rotation from the positive X-axis towards the positive Y-axis.
-     *
-     * \param rz The rotation in degrees.
-     */
     void rotateZ(double rz);
 
     /** \brief Apply a uniform scaling in all directions.

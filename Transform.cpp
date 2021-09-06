@@ -107,7 +107,6 @@ Ray Transform::applyInverse(const Ray &ray) const {
 void Transform::rotateX(double rx) {
     Matrix R(Matrix::identity(4, 4));
 
-    rx *= Deg2Rad;
     R(1, 1) = R(2, 2) = cos(rx);
     R(1, 2) = -sin(rx);
     R(2, 1) = sin(rx);
@@ -119,7 +118,6 @@ void Transform::rotateX(double rx) {
 void Transform::rotateY(double ry) {
     Matrix R(Matrix::identity(4, 4));
 
-    ry *= Deg2Rad;
     R(0, 0) = R(2, 2) = cos(ry);
     R(0, 2) = sin(ry);
     R(2, 0) = -sin(ry);
@@ -131,7 +129,6 @@ void Transform::rotateY(double ry) {
 void Transform::rotateZ(double rz) {
     Matrix R(Matrix::identity(4, 4));
 
-    rz *= Deg2Rad;
     R(0, 0) = R(1, 1) = cos(rz);
     R(0, 1) = -sin(rz);
     R(1, 0) = sin(rz);

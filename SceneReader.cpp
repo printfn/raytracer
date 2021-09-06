@@ -171,7 +171,7 @@ void SceneReader::parseCameraBlock(std::queue<std::string> &tokenBlock) {
         if (token == "ROTATE") {
             std::string axis = tokenBlock.front();
             tokenBlock.pop();
-            double angle = parseNumber(tokenBlock);
+            double angle = parseNumber(tokenBlock) * Deg2Rad;
             if (axis == "X") {
                 camera->transform.rotateX(angle);
             } else if (axis == "Y") {
@@ -318,7 +318,7 @@ void SceneReader::parseObjectBlock(std::queue<std::string> &tokenBlock) {
         if (token == "ROTATE") {
             std::string axis = tokenBlock.front();
             tokenBlock.pop();
-            double angle = parseNumber(tokenBlock);
+            double angle = Deg2Rad * parseNumber(tokenBlock);
             if (axis == "X") {
                 object->transform.rotateX(angle);
             } else if (axis == "Y") {
