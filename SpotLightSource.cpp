@@ -14,7 +14,7 @@ Colour SpotLightSource::getIlluminationAt(const Point &point) const {
     // compute cos of the angle between the light's actual direction and the direction to the target point
     auto cosOfAngle = directionToPoint.dot(direction_) / distance / direction_.norm();
     // if we're outside the light cone
-    if (cosOfAngle < cos(deg2rad(angle_ * 2))) {
+    if (cosOfAngle < cos(angle_ * Deg2Rad * 2)) {
         // object is outside the cone, so return black
         return Colour{};
     }

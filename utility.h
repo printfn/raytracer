@@ -6,51 +6,13 @@
 #include <cmath>
 #include <limits>
 
-const double epsilon = 1e-6; //!< Small number for checking when things are almost zero
+const double epsilon = 1e-6;
+const double infinity = std::numeric_limits<double>::max();
 
-const double infinity = std::numeric_limits<double>::max(); //!< Very large number, bigger than any sensible distance
+const double TAU = 6.283185307179586;
+const double Deg2Rad = TAU / 360.0;
+const double Rad2Deg = 360.0 / TAU;
 
-const double tau = 6.283185307179586;
-
-/** 
- * \brief Convert degrees to radians.
- * 
- * C++ mathematical functions expect angles in radians, but many people think
- * in degrees. The high level Transform functions expect parameters in degrees
- * and this function, along with deg2rad(), converts between the two.
- * 
- * \param deg An angle measured in degrees.
- * \return The angle measured in radians.
- */
-inline double deg2rad(double deg) {
-    return deg * tau / 360;
-}
-
-/** 
- * \brief Convert radians to degrees.
- * 
- * C++ mathematical functions expect angles in radians, but many people think
- * in degrees. The high level Transform functions expect parameters in degrees
- * and this function, along with rad2deg(), converts between the two.
- * 
- * \param rad An angle measured in radians.
- * \return The angle measured in degrees.
- */
-inline double rad2deg(double rad) {
-    return rad * 360 / tau;
-}
-
-
-/**
- * \brief Return the sign of a number.
- *
- * This function returns +1 for positive numbers, -1 for negative numbers
- * and 0 for zero values. Since rounding can cause non-zero values, very small
- * numbers (less than \c epsilon) are returned as being 0.
- *
- * \param val The value to check the sign of.
- * \return 0, +1, or -1 depending on the sign of \c val.
- */
 inline int sign(double val) {
     if (std::abs(val) < epsilon) return 0;
     if (val < 0) return -1;
