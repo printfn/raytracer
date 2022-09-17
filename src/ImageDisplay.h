@@ -6,7 +6,7 @@
 #include "Colour.h"
 #include "NonCopyable.h"
 
-#include "CImg/CImg.h"
+#include <CImg.h>
 
 #include <string>
 #include <memory>
