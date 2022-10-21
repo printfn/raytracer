@@ -6,7 +6,7 @@ The following dependencies are *required*:
 
 * CMake (to build the project)
 * libpng
-* X11 (available on macOS via XQuartz)
+* X11 (available on macOS via XQuartz, or `sudo apt install libx11-dev` on Debian)
 
 CMake should be able to find libpng and X11 automatically.
 
