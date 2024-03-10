@@ -1,0 +1,43 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest]
+
+    permissions:
+      contents: read
+
+    runs-on: ${{ matrix.platform }}
+
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y libx11-dev
+
+      - name: Compile
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make -j"$(nproc)"
+
+      - name: Upload artifacts (MSI)
+        uses: actions/upload-artifact@v4
+        with:
+          name: raytracer-x86_64-linux-gnu
+          path: build/raytracer
+          if-no-files-found: error
