@@ -236,7 +236,7 @@ void SceneReader::parseLightBlock(std::queue<std::string> &tokenBlock) {
     Point location;
     Colour colour;
     Direction direction;
-    double angle;
+    double angle = 0;
     double radius = 0;
     int samples = 1;
 
