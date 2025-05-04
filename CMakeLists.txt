@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.17)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -76,17 +78,17 @@ add_executable(raytracer
     src/main.cpp
     src/utility.h)
 
-target_compile_definitions(raytracer PRIVATE cimg_use_png=1)
+target_compile_definitions(raytracer PRIVATE cimg_use_jxl=1)
 target_compile_definitions(raytracer PRIVATE cimg_display=1)
 target_include_directories(raytracer PRIVATE CImg)
 
 find_package(X11 REQUIRED)
-message("Found X11 in ${X11_INCLUDE_DIR}")
+message("Found X11: ${X11_INCLUDE_DIR}")
 target_include_directories(raytracer PRIVATE ${X11_INCLUDE_DIR})
 target_link_libraries(raytracer PRIVATE ${X11_LIBRARIES})
 
-find_package(PNG REQUIRED)
-message("Found libpng: ${PNG_VERSION_STRING}")
-target_link_libraries(raytracer PRIVATE ${PNG_LIBRARIES})
+find_package(JXL REQUIRED)
+message("Found libjxl: ${libjxl_LIBRARY}")
+target_link_libraries(raytracer PRIVATE ${libjxl_LIBRARY})
 
 target_link_libraries(raytracer PRIVATE pthread)

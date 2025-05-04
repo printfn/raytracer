@@ -5,10 +5,10 @@ This code has been tested on Linux and macOS, and with both Clang and GCC.
 The following dependencies are *required*:
 
 * CMake (to build the project)
-* libpng
+* libjxl
 * X11 (available on macOS via XQuartz, or `sudo apt install libx11-dev` on Debian)
 
-CMake should be able to find libpng and X11 automatically.
+CMake should be able to find libjxl and X11 automatically.
 
 Instructions for building:
 
@@ -24,6 +24,6 @@ The `raytracer` executable accepts the following command-line options:
 
 ```
 --no-gui        Disable the X11 GUI
--o <file.png>   Change the output filename to <file.png>
+-o <file.jxl>   Change the output filename to <file.jxl>
 -j <n>          Use <n> threads for rendering
 ```

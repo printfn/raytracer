@@ -29,7 +29,7 @@
 
 static std::string outputFilename(const std::string& filename) {
     auto path = std::filesystem::path{filename};
-    return path.filename().replace_extension(".png");
+    return path.filename().replace_extension(".jxl");
 }
 
 SceneReader::SceneReader(const std::string& filename) :

@@ -21,6 +21,14 @@ int main(int argc, char *argv[]) {
 
     for (int i = 1; i < argc; ++i) {
         auto arg = argv[i];
+        if (!strcmp(arg, "-h") || !strcmp(arg, "--help")) {
+            std::cerr << "Usage: raytracer [FLAGS] input.txt" << std::endl << std::endl;
+            std::cerr << "Flags:" << std::endl;
+            std::cerr << "    --no-gui                     Disable the X11 GUI" << std::endl;
+            std::cerr << "    -j, --jobs <N>               Specify the number of threads" << std::endl;
+            std::cerr << "    -o, --output <filename.jxl>  Override the image output filename" << std::endl;
+            return 0;
+        }
         if (!strcmp(arg, "--nogui") || !strcmp(arg, "--no-gui")) {
             options.showGUI = false;
             continue;

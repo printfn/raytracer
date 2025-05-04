@@ -28,7 +28,7 @@ void ImageDisplay::refresh() {
 }
 
 void ImageDisplay::save(const std::string &filename) const {
-    image_.save_png(filename.c_str());
+    image_.save_jxl(filename.c_str(), 0.0);
 }
 
 void ImageDisplay::pause(double seconds) {

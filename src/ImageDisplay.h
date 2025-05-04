@@ -67,13 +67,7 @@ public:
     void refresh();
 
     /**
-     * \brief Save an image to file.
-     *
-     * Images can be saved to files, and the image format is determined by
-     * the file extension. For example, saving to \c render.png would write a 
-     * PNG image, while saving to \c RENDER.JPG would write a JPEG.
-     *
-     * \param filename The file to save to, with an appropriate extension.
+     * Save an image to file.
      */
     void save(const std::string &filename) const;
 
