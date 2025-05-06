@@ -11,6 +11,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <shared_mutex>
 
 /**
  * \brief Class to display and save images.
@@ -83,6 +84,7 @@ public:
 
 private:
 
+    std::shared_mutex imageMutex_;
     std::vector<uint8_t> imageBuffer_; // Internal image storage
     cimg_library::CImg<uint8_t> image_;
     std::unique_ptr<cimg_library::CImgDisplay> display_ = nullptr; // (Optional) window to display the image in

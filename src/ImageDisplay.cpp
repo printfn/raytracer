@@ -14,6 +14,7 @@ ImageDisplay::~ImageDisplay() {
 }
 
 void ImageDisplay::set(int x, int y, const Colour &colour) {
+    std::shared_lock lock{imageMutex_};
     auto srgbValues = colour.srgb_gamma_correction();
     imageBuffer_[y * width_ + x] = srgbValues[0];
     imageBuffer_[y * width_ + x + width_ * height_] = srgbValues[1];
@@ -21,6 +22,7 @@ void ImageDisplay::set(int x, int y, const Colour &colour) {
 }
 
 void ImageDisplay::refresh() {
+    std::unique_lock lock{imageMutex_};
     if (!display_) {
         display_ = std::make_unique<cimg_library::CImgDisplay>(width_, height_, "Render");
     }
