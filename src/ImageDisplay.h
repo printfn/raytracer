@@ -8,6 +8,7 @@
 
 #include <CImg.h>
 
+#include <vector>
 #include <string>
 #include <memory>
 
@@ -82,10 +83,11 @@ public:
 
 private:
 
-    cimg_library::CImg<unsigned char> image_; //!< Internal storage of the image to render to.
-    std::unique_ptr<cimg_library::CImgDisplay> display_ = nullptr; //!< (Optional) window to display the image in
-    int width_; //!< The width of the image
-    int height_; //!< The height of the image
+    std::vector<uint8_t> imageBuffer_; // Internal image storage
+    cimg_library::CImg<uint8_t> image_;
+    std::unique_ptr<cimg_library::CImgDisplay> display_ = nullptr; // (Optional) window to display the image in
+    int width_; // The width of the image
+    int height_; // The height of the image
 
 };
 

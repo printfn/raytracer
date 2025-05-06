@@ -2,8 +2,9 @@
 #include <memory>
 
 ImageDisplay::ImageDisplay(int width, int height) :
-        image_(width, height, 1, 3, 0), width_(width), height_(height) {
+        imageBuffer_(width * height * 3), width_(width), height_(height) {
 
+    image_ = cimg_library::CImg<uint8_t>(imageBuffer_.data(), width, height, 1, 3, true);
 }
 
 ImageDisplay::~ImageDisplay() {
@@ -14,9 +15,9 @@ ImageDisplay::~ImageDisplay() {
 
 void ImageDisplay::set(int x, int y, const Colour &colour) {
     auto srgbValues = colour.srgb_gamma_correction();
-    image_(x, y, 0, 0) = int(srgbValues[0]);
-    image_(x, y, 0, 1) = int(srgbValues[1]);
-    image_(x, y, 0, 2) = int(srgbValues[2]);
+    imageBuffer_[y * width_ + x] = srgbValues[0];
+    imageBuffer_[y * width_ + x + width_ * height_] = srgbValues[1];
+    imageBuffer_[y * width_ + x + 2 * width_ * height_] = srgbValues[2];
 }
 
 void ImageDisplay::refresh() {
