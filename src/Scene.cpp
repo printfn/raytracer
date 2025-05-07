@@ -42,7 +42,7 @@ void Scene::renderThread(int thread, RaytracerOptions &options, ImageDisplay &di
             try {
                 display.refresh();
             } catch (...) {
-                std::cerr << "Failed to show GUI. Use --no-gui to disable the X11 GUI." << std::endl;
+                std::cerr << "Failed to show GUI. Use --no-gui to disable the GUI." << std::endl;
                 options.disableGui();
             }
         }

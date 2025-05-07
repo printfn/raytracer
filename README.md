@@ -2,14 +2,15 @@
 
 This code has been tested on Linux and macOS, and with both Clang and GCC.
 
-Raytracer requires the following dependencies:
+The following dependencies are **required**:
 
-* CMake (required)
-* libjxl (required)
-* X11 (optional)
-    * install `libx11-dev` on Debian, or XQuartz on macOS
+* CMake
+* libjxl
 
-CMake should be able to find libjxl and X11 automatically.
+This raytracer also has optional GUI support using SDL3 or X11. By default it
+will attempt to find either SDL3 or X11 on your system. You can customise this
+behaviour by setting the `USE_GUI` parameter to `AUTO` (default), `SDL3`, `X11`
+or `OFF` (e.g. `cmake -DUSE_GUI=OFF`).
 
 Instructions for building:
 
@@ -24,7 +25,7 @@ make
 The `raytracer` executable accepts the following command-line options:
 
 ```
---no-gui        Disable the X11 GUI
+--no-gui        Disable the GUI
 -o <file.jxl>   Change the output filename to <file.jxl>
 -j <n>          Use <n> threads for rendering
 ```

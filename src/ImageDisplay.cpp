@@ -5,19 +5,19 @@
 #include <iostream>
 #include <jxl/encode_cxx.h>
 #include <memory>
-#if USE_X11
+#if USE_GUI
 #include <mutex>
 #endif
 
 ImageDisplay::ImageDisplay(int width, int height) :
         imageBuffer_(width * height * 3), width_(width), height_(height) {
-#if USE_X11
+#if USE_GUI
     image_ = cimg_library::CImg<uint8_t>(imageBuffer_.data(), width, height, 1, 3, true);
 #endif
 }
 
 ImageDisplay::~ImageDisplay() {
-#if USE_X11
+#if USE_GUI
     if (display_ && !display_->is_closed()) {
         display_->close();
     }
@@ -33,7 +33,7 @@ void ImageDisplay::set(int x, int y, const Colour &colour) {
 }
 
 void ImageDisplay::refresh() {
-#if USE_X11
+#if USE_GUI
     std::unique_lock lock{imageMutex_};
     if (!display_) {
         display_ = std::make_unique<cimg_library::CImgDisplay>(width_, height_, "Render");
@@ -114,7 +114,7 @@ void ImageDisplay::save(const std::string &filename) const {
 }
 
 void ImageDisplay::pause(double seconds) {
-#if USE_X11
+#if USE_GUI
     if (display_) {
         display_->wait(int(seconds * 1000));
     }

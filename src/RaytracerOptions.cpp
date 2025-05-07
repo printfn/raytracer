@@ -7,7 +7,7 @@
 RaytracerOptions::RaytracerOptions() {}
 
 bool RaytracerOptions::showGUI() {
-#if USE_X11
+#if USE_GUI
     return showGUI_;
 #else
     return false;
@@ -39,7 +39,7 @@ std::optional<RaytracerOptions> RaytracerOptions::fromArgs(int argc, const char 
         if (!strcmp(arg, "-h") || !strcmp(arg, "--help")) {
             std::cerr << "Usage: raytracer [FLAGS] input.txt" << std::endl << std::endl;
             std::cerr << "Flags:" << std::endl;
-            std::cerr << "    --no-gui                     Disable the X11 GUI" << std::endl;
+            std::cerr << "    --no-gui                     Disable the GUI" << std::endl;
             std::cerr << "    -j, --jobs <N>               Specify the number of threads" << std::endl;
             std::cerr << "    -o, --output <filename.jxl>  Override the image output filename" << std::endl;
             return std::nullopt;
