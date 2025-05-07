@@ -118,9 +118,9 @@ else()
 	target_compile_definitions(raytracer PRIVATE USE_GUI=0)
 endif()
 
-find_package(JXL REQUIRED)
-message(STATUS "Found libjxl: ${libjxl_LIBRARY}")
-target_include_directories(raytracer PRIVATE ${libjxl_INCLUDE_PATH})
-target_link_libraries(raytracer PRIVATE ${libjxl_LIBRARY})
+find_package(JPEGXL REQUIRED)
+message(STATUS "Found libjxl: ${JPEGXL_LIBRARIES}")
+target_include_directories(raytracer PRIVATE ${JPEGXL_INCLUDE_DIRS})
+target_link_libraries(raytracer PRIVATE ${JPEGXL_LIBRARIES})
 
 target_link_libraries(raytracer PRIVATE pthread)
