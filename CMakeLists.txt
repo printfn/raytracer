@@ -79,7 +79,7 @@ add_executable(raytracer
 	src/main.cpp
 	src/utility.h)
 
-option(USE_X11 "Enable X11 support [ON, OPTIONAL, OFF]" "OPTIONAL")
+set(USE_X11 "OPTIONAL" CACHE STRING "Enable X11 support [ON, OPTIONAL, OFF]")
 if(USE_X11 STREQUAL "OPTIONAL")
 	message(STATUS "X11 is optional")
 	find_package(X11)
@@ -89,7 +89,7 @@ elseif(USE_X11 STREQUAL "ON")
 elseif(USE_X11 STREQUAL "OFF")
 	message(STATUS "X11 is disabled")
 else()
-	message(FATAL_ERROR "USE_X11 is not set correctly, must be ON, OPTIONAL (default) or OFF")
+	message(FATAL_ERROR "USE_X11 is not set correctly: must be ON, OPTIONAL (default) or OFF (currently set to '" ${USE_X11} "')")
 endif()
 
 if(X11_FOUND)
