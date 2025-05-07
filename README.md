@@ -2,11 +2,12 @@
 
 This code has been tested on Linux and macOS, and with both Clang and GCC.
 
-The following dependencies are *required*:
+Raytracer requires the following dependencies:
 
-* CMake (to build the project)
-* libjxl
-* X11 (available on macOS via XQuartz, or `sudo apt install libx11-dev` on Debian)
+* CMake (required)
+* libjxl (required)
+* X11 (optional)
+    * install `libx11-dev` on Debian, or XQuartz on macOS
 
 CMake should be able to find libjxl and X11 automatically.
 

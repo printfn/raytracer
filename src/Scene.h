@@ -17,7 +17,7 @@
 #include "Ray.h"
 #include "RayIntersection.h"
 
-struct RaytracerOptions;
+class RaytracerOptions;
 class ImageDisplay;
 
 /**

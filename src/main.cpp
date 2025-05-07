@@ -3,7 +3,6 @@
 #include "RaytracerOptions.h"
 
 #include <iostream>
-#include <cstring>
 
 /** \brief Create a Scene, read input from files, and render the Scene.
  *
@@ -15,58 +14,17 @@
  * is a Camera specified.
  * 
  */
-int main(int argc, char *argv[]) {
-    auto options = RaytracerOptions{};
-    std::optional<std::string> filename;
-
-    for (int i = 1; i < argc; ++i) {
-        auto arg = argv[i];
-        if (!strcmp(arg, "-h") || !strcmp(arg, "--help")) {
-            std::cerr << "Usage: raytracer [FLAGS] input.txt" << std::endl << std::endl;
-            std::cerr << "Flags:" << std::endl;
-            std::cerr << "    --no-gui                     Disable the X11 GUI" << std::endl;
-            std::cerr << "    -j, --jobs <N>               Specify the number of threads" << std::endl;
-            std::cerr << "    -o, --output <filename.jxl>  Override the image output filename" << std::endl;
-            return 0;
-        }
-        if (!strcmp(arg, "--nogui") || !strcmp(arg, "--no-gui")) {
-            options.showGUI = false;
-            continue;
-        }
-        if (!strcmp(arg, "-j") || !strcmp(arg, "--jobs")) {
-            if (++i >= argc) {
-                std::cerr << "Use -j or --jobs to specify the number of threads (e.g. -j 2)." << std::endl;
-                return 1;
-            }
-            options.threads = atoi(argv[i]);
-            continue;
-        }
-        if (!strcmp(arg, "-o") || !strcmp(arg, "--output")) {
-            if (++i >= argc) {
-                std::cerr << "Use -o or --output to override the output filename." << std::endl;
-                return 1;
-            }
-            options.outputFilename = argv[i];
-            continue;
-        }
-        if (!filename) {
-            filename = arg;
-        } else {
-            std::cerr << "Cannot render multiple input files at once" << std::endl;
-            return 1;
-        }
-    }
-
-    if (!filename) {
-        std::cerr << "No input file specified" << std::endl;
+int main(int argc, const char *argv[]) {
+    auto options = RaytracerOptions::fromArgs(argc, argv);
+    if (!options) {
         return 1;
     }
 
-    SceneReader reader{filename.value()};
+    SceneReader reader{options->inputFilename()};
     auto &scene = reader.getScene();
 
     if (scene.hasCamera()) {
-        scene.render(options);
+        scene.render(*options);
     } else {
         std::cerr << "Cannot render a scene with no camera!" << std::endl;
         return 1;

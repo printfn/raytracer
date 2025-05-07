@@ -35,15 +35,15 @@ void Scene::renderThread(int thread, RaytracerOptions &options, ImageDisplay &di
     auto percentage = 0;
 
     for (int v = 0; v < renderHeight; ++v) {
-        if (v % options.threads != thread) {
+        if (v % options.threads() != thread) {
             continue;
         }
-        if (thread == 0 && options.showGUI) {
+        if (thread == 0 && options.showGUI()) {
             try {
                 display.refresh();
             } catch (...) {
                 std::cerr << "Failed to show GUI. Use --no-gui to disable the X11 GUI." << std::endl;
-                options.showGUI = false;
+                options.disableGui();
             }
         }
         if (percentage == 0) {
@@ -75,13 +75,13 @@ void Scene::render(RaytracerOptions &options) const {
     ImageDisplay display(renderWidth, renderHeight);
 
     std::string outputFilename;
-    if (options.outputFilename) {
-        outputFilename = options.outputFilename.value();
+    if (options.outputFilename()) {
+        outputFilename = options.outputFilename().value();
     } else {
         outputFilename = filename_;
     }
 
-    if (options.showGUI && options.threads > 1) {
+    if (options.showGUI() && options.threads() > 1) {
         std::cerr
             << "Warning: Disabling the GUI (using --no-gui) is"
             << " recommended when doing multi-threaded rendering"
@@ -92,14 +92,14 @@ void Scene::render(RaytracerOptions &options) const {
 
     const auto startTime = std::chrono::high_resolution_clock::now();
 
-    const auto linesPerThread = renderHeight / options.threads;
+    const auto linesPerThread = renderHeight / options.threads();
     if (linesPerThread < 1) {
         std::cerr << "Too many threads. Please increase resolution or specify fewer threads." << std::endl;
         return;
     }
 
     std::vector<std::thread> threads;
-    for (int thread = 1; thread < options.threads; ++thread) {
+    for (int thread = 1; thread < options.threads(); ++thread) {
         threads.emplace_back([thread, options, &display, this] {
             auto optionsCopy = options;
             // important: this lambda copied the `thread` and `options` variables
@@ -112,7 +112,7 @@ void Scene::render(RaytracerOptions &options) const {
 
     for (auto &thread : threads) {
         thread.join();
-        if (options.showGUI) {
+        if (options.showGUI()) {
             display.refresh();
         }
     }
@@ -124,7 +124,7 @@ void Scene::render(RaytracerOptions &options) const {
     std::cout << "Saving rendered image to " << outputFilename << std::endl;
     display.save(outputFilename);
 
-    if (options.showGUI) {
+    if (options.showGUI()) {
         std::cout << "Waiting for 5 seconds" << std::endl;
         display.pause(5);
     }

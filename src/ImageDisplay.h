@@ -6,7 +6,9 @@
 #include "Colour.h"
 #include "NonCopyable.h"
 
+#if USE_X11
 #include <CImg.h>
+#endif
 
 #include <vector>
 #include <string>
@@ -86,8 +88,10 @@ private:
 
     std::shared_mutex imageMutex_;
     std::vector<uint8_t> imageBuffer_; // Internal image storage
+#if USE_X11
     cimg_library::CImg<uint8_t> image_;
     std::unique_ptr<cimg_library::CImgDisplay> display_ = nullptr; // (Optional) window to display the image in
+#endif
     int width_; // The width of the image
     int height_; // The height of the image
 
